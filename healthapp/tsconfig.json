@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
     "noImplicitAny": true,
-    "noEmit": true
+    "noEmit": true,
   }
 }
