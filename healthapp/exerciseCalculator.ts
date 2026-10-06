@@ -20,7 +20,7 @@ const calculateExercises = (data: Array<number>, t: number): Result => {
         : average < t ? 2
         : 1;
 
-    const ratingDescription = rating === 3 ? "Target reached, keep it  going!" 
+    const ratingDescription = rating === 3 ? "Target reached, keep it going!" 
         : rating === 2 ? "Half way there, push just a bit more!"
         : rating === 1 ? "You're getting started, just get more hours in!"
         : "bad input"
