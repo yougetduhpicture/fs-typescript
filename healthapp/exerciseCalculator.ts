@@ -8,6 +8,9 @@ interface Result {
     average: number
 }
 
+const t: number = Number(process.argv[2]);
+const data: Array<number> = process.argv.slice(3).map(x => Number(x));
+
 const calculateExercises = (data: Array<number>, t: number): Result => {
     const periodLength: number = data.length;
     const trainingDays = data.filter((x: number) => x > 0 ).length;
@@ -17,7 +20,7 @@ const calculateExercises = (data: Array<number>, t: number): Result => {
 
     const rating = 
         average >= t ? 3
-        : average < t ? 2
+        : average >= (t / 2) ? 2
         : 1;
 
     const ratingDescription = rating === 3 ? "Target reached, keep it going!" 
@@ -37,8 +40,3 @@ const calculateExercises = (data: Array<number>, t: number): Result => {
     }
 }
 
-try {
-  console.log(calculateExercises([3, 0, 2, 4.5, 0, 3, 1], 2));
-} catch (error) {
-  console.log('Something went wrong: ');
-}
