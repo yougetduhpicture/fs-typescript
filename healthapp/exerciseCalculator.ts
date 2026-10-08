@@ -40,3 +40,13 @@ const calculateExercises = (data: Array<number>, t: number): Result => {
     }
 }
 
+try {
+  console.log(calculateExercises(data, t));
+} catch (error: unknown) {
+  let errorMessage = 'Something went wrong: '
+  if (error instanceof Error) {
+    errorMessage += error.message;
+  }
+  console.log(errorMessage);
+}
+
