@@ -8,8 +8,24 @@ interface Result {
     average: number
 }
 
-const t: number = Number(process.argv[2]);
-const data: Array<number> = process.argv.slice(3).map(x => Number(x));
+interface Args {
+ t: number,
+ data: Array<number>
+}
+
+const parseArgs = (args: string[]): Args => {
+    if (args.length < 4) throw new Error('Not enough arguments');
+
+    const t: number = Number(process.argv[2]);
+    const data: Array<number> = process.argv.slice(3).map(x => Number(x));
+
+    if ((!isNaN(Number(t))) && (data.every((x) => !isNaN(x)))) {
+        return { t, data }
+    } else {
+        throw new Error('Provided values were not numbers!');
+    }
+}
+
 
 const calculateExercises = (data: Array<number>, t: number): Result => {
     const periodLength: number = data.length;
@@ -41,11 +57,12 @@ const calculateExercises = (data: Array<number>, t: number): Result => {
 }
 
 try {
-  console.log(calculateExercises(data, t));
+    const {t , data} = parseArgs(process.argv);
+    console.log(calculateExercises(data, t));
 } catch (error: unknown) {
-  let errorMessage = 'Something went wrong: '
+   let errorMessage = 'Something bad happened.'
   if (error instanceof Error) {
-    errorMessage += error.message;
+    errorMessage += ' Error: ' + error.message;
   }
   console.log(errorMessage);
 }
