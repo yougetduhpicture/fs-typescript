@@ -18,5 +18,15 @@ const calculateBmi = (height: number, weight: number) => {
         return 'normal range';
     } else if (bmi >= 25 && bmi < 30) {
         return 'overweight range';
-    } else return 'obese range';
+    } else if (bmi >= 30)'obese range';
+}
+
+try {
+  console.log(calculateBmi(height, weight));
+} catch (error: unknown) {
+  let errorMessage = 'Something went wrong: '
+  if (error instanceof Error) {
+    errorMessage += error.message;
+  }
+  console.log(errorMessage);
 }
